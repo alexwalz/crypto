@@ -79,9 +79,9 @@ class LoginForm extends Component {
       return ( 
             <div className='login-page-container'>
 
-                <div className='login-page-home-link'><a href='/'><Icon disabled name='arrow left' />Back to Home</a></div>
-
                 <div className='form-container'>
+
+                    <div className='login-page-home-link'><a href='/'><Icon disabled name='arrow left' />Back to Home</a></div>
 
                     {this.state.error ? this.errorMessage() : null}
 
@@ -99,7 +99,9 @@ class LoginForm extends Component {
                         <br/>
                         <p style={{color: "white", marginTop: "30px"}}>To create a new account <a href='/signup' style={{color: "#FB3668", paddingLeft: "9px"}}>Click Here</a></p>
                     </Form>
+
                 </div>
+                
             </div>
                 
         )
