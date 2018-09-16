@@ -20,7 +20,8 @@ app.use(bodyParser.json());
 
 var allowedOrigins = [
     'http://localhost:3000',
-    'http://localhost:5000'
+    'http://localhost:5000',
+    'https://marina-cove.herokuapp.com'
 ];
 
 app.use(cors({
