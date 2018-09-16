@@ -6,6 +6,7 @@ import registerServiceWorker from "./registerServiceWorker";
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from './tools/store';
+import 'semantic-ui-css/semantic.min.css';
 
 
 ReactDOM.render((

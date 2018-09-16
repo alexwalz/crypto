@@ -1,30 +1,28 @@
-var express = require('express');
-const path = require('path');
-var bodyParser = require('body-parser');
-const config = require('./config');
-var cors = require('cors');
+var express         = require('express');
+const path          = require('path');
+var bodyParser      = require('body-parser');
+const config        = require('./config');
+var cors            = require('cors');
 
-var app = express();
-var router = express.Router();
+var app             = express();
+var router          = express.Router();
 
-// db and models 
-const db_url = process.env.MONGODB_URI || config.dbUri
+const db_url        = process.env.MONGODB_URI || config.dbUri
 
 require('./server/models').connect(db_url);
 
-// Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 var port = process.env.PORT || 5000;
 
-// Enable body parser to read incoming POST request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// CORS stuff
 var allowedOrigins = [
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'http://localhost:5000'
 ];
+
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin) return callback(null, true);
@@ -38,11 +36,19 @@ app.use(cors({
 }));
 
 // Routes
-const apiRoutes = require('./server/routes/api-routes');
+const apiRoutes             = require('./server/routes/api-routes');
+const apiRoutesUsers        = require('./server/routes/api-users');
+const apiRoutesServices     = require('./server/routes/api-services');
+const apiRoutesVehicles     = require('./server/routes/api-vehicles');
+const apiRoutesAuth         = require('./server/routes/api-auth');
+
 app.use('/api', apiRoutes);
+app.use('/api/users', apiRoutesUsers);
+app.use('/api/services', apiRoutesServices);
+app.use('/api/vehicles', apiRoutesVehicles);
+app.use('/api/auth', apiRoutesAuth);
 
 
-//If no route matches, send the client 
 router.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });

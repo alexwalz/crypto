@@ -1,4 +1,4 @@
-# MERRN Boilerplate
+# Marina Cove Web Application
 
 This is an application starting point that is fully configured with the following:
 
@@ -9,7 +9,6 @@ This is an application starting point that is fully configured with the followin
 * Node.js 
 * MongoDB
 
-Everything is setup with deployment in mind. This configuration allows for simple deployment to Heroku.
 
 ## Installation 
 

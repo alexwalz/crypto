@@ -1,0 +1,54 @@
+.login-page-container{
+    background: url('../../images/lake1.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+.login-page-container:after {
+    content: " ";
+    z-index: 10;
+    display: block;
+    position: relative;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .form-container{
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 50%;
+    padding: 5%;
+    min-width: 300px;
+  }
+
+  .login-page-home-link{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    z-index: 999;
+    width: 50%;
+    padding: 5%;
+    color: #FB3668;
+  }
+
+  .login-page-home-link a{
+    color: #FB3668;
+  }
+  .login-page-home-link a:hover{
+    color: white;
+  }
+
+  .marina-cove-image{
+      border-radius: 999px;
+      width: 40%;
+  }

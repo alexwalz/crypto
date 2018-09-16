@@ -12,6 +12,8 @@ module.exports.connect = (uri) => {
     });
 
     // load models
-    require('./Sample');
+    require('./Users');
+    require('./Services');
+    require('./Vehicles');
 
 };
