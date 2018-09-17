@@ -71,7 +71,7 @@ class LoginForm extends Component {
             if(result.data.success){
                 this.props.history.push('/login')
             }else{
-                this.setState({error: true, errorMessage: result.data.msg})
+                this.setState({error: true, errorMessage: result.data.msg, submitting: false})
             }
             
           })

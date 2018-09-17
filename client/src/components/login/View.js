@@ -66,7 +66,7 @@ class LoginForm extends Component {
 
             console.log(error)
 
-            this.setState({error: true, errMessage: 'Login failed. Username or password not match'})
+            this.setState({error: true, errMessage: 'Login failed. Username or password not match', submitting: false})
 
             if(error.response.status === 401) {
               this.setState({ message: 'Login failed. Username or password not match' });

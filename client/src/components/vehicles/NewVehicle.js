@@ -123,11 +123,13 @@ class LoginForm extends Component {
             
                     <Form.Field>
                         <label style={{color: "#FB3668"}}>Model</label>
+                        <br/>
                         <input onChange={this.handleInputChange} placeholder='F-150' name='model'/>
                     </Form.Field>
 
                     <Form.Field>
                         <label style={{color: "#FB3668"}}>License Plate Number</label>
+                        <br/>
                         <input onChange={this.handleInputChange} placeholder='123 xyz' name='license'/>
                     </Form.Field>
 
