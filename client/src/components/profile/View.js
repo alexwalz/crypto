@@ -1,9 +1,10 @@
-/* eslint-disable no-undef */
 import React, { Component} from 'react'
 import Sidebar from './Sidebar'
 import './styles.css'
 import axios from 'axios'
-import NewVehicle from '../vehicles/NewVehicle'
+import Vehicles from '../vehicles/View'
+// eslint-disable-next-line 
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
 class Profile extends Component {
@@ -31,14 +32,19 @@ class Profile extends Component {
       return ( 
             <div>
 
-                <Sidebar />
+                <Sidebar/>
 
                 <div style={{marginLeft: "150px", padding: "5%"}}>
-                    <NewVehicle />
+                    <Switch location={this.props.location}>
+                        <Route path="/profile/vehicles" component={Vehicles} />
+                    </Switch>
                 </div>
 
 
+                
+
             </div>
+
                 
         )
     }

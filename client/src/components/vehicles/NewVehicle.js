@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { Button, Form, Message } from 'semantic-ui-react'
+import { Button, Form, Message, Icon } from 'semantic-ui-react'
 import React, { Component} from 'react'
 import './styles.css'
 import axios from 'axios'
@@ -32,15 +32,11 @@ class LoginForm extends Component {
         axios.get('/api/users/authenticate').then(function(response){
 
             currentComponent.setState({user: response.data.authenticatedUser.id}, function(){
-
                 axios.get('/api/vehicles/'+this.state.user).then(function(response){
-                    currentComponent.setState({vehicles: response.data}, function(){
-                        console.log(this.state.vehicles)
-                    })
+                    currentComponent.setState({vehicles: response.data})
                 }).catch(function(err){
                     console.log(err)
                 })
-
             })
 
         }).catch(function(err){
@@ -72,8 +68,6 @@ class LoginForm extends Component {
 
     handleSubmit=(e)=>{
 
-        let currentComponent = this
-
         e.preventDefault()
 
         let newVehicle={
@@ -87,23 +81,13 @@ class LoginForm extends Component {
 
         axios.post('/api/vehicles', newVehicle)
 
-        .then((result) => {
+            .then((result) => {
+                if(result.status === 200){
+                    window.location.reload()
+                }
+            })
 
-            if(result.status === 200){
-
-                axios.get('/api/vehicles/'+this.state.user).then(function(response){
-
-                    currentComponent.setState({vehicles: response.data}, function(){
-                        console.log(this.state.vehicles)
-                    })
-    
-                }).catch(function(err){console.log(err)})
-
-            }
-
-          })
-
-          .catch((error) => {console.log(error)});
+            .catch((error) => {console.log(error)});
 
     }
 
@@ -112,43 +96,48 @@ class LoginForm extends Component {
 
       return ( 
         
-        <Form style={{marginLeft: "auto", marginRight: "auto"}}>
+        <div>
+            <h1><Icon disabled name='add' />Add A New Vehicle</h1>
+            <br/>
+            <Form style={{marginLeft: "auto", marginRight: "auto"}}>
 
-            <Form.Group inline>
+                <Form.Group inline>
 
-                <Form.Field>
-                    <label style={{color: "#FB3668"}}>Type</label>
-                    <br/>
-                    <input onChange={this.handleInputChange} placeholder='Truck' name='type'/>
-                </Form.Field>
-                
-                <Form.Field>
-                    <label style={{color: "#FB3668"}}>Year</label>
-                    <br/>
-                    <input onChange={this.handleInputChange} placeholder='2015' name='year'/>
-                </Form.Field>
+                    <Form.Field>
+                        <label style={{color: "#FB3668"}}>Type</label>
+                        <br/>
+                        <input onChange={this.handleInputChange} placeholder='Truck' name='type'/>
+                    </Form.Field>
+                    
+                    <Form.Field>
+                        <label style={{color: "#FB3668"}}>Year</label>
+                        <br/>
+                        <input onChange={this.handleInputChange} placeholder='2015' name='year'/>
+                    </Form.Field>
 
-                <Form.Field>
-                    <label style={{color: "#FB3668"}}>Make</label>
-                    <br/>
-                    <input onChange={this.handleInputChange} placeholder='Ford' name='make' />
-                </Form.Field>
-        
-                <Form.Field>
-                    <label style={{color: "#FB3668"}}>Model</label>
-                    <input onChange={this.handleInputChange} placeholder='F-150' name='model'/>
-                </Form.Field>
+                    <Form.Field>
+                        <label style={{color: "#FB3668"}}>Make</label>
+                        <br/>
+                        <input onChange={this.handleInputChange} placeholder='Ford' name='make' />
+                    </Form.Field>
+            
+                    <Form.Field>
+                        <label style={{color: "#FB3668"}}>Model</label>
+                        <input onChange={this.handleInputChange} placeholder='F-150' name='model'/>
+                    </Form.Field>
 
-                <Form.Field>
-                    <label style={{color: "#FB3668"}}>License Plate Number</label>
-                    <input onChange={this.handleInputChange} placeholder='123 xyz' name='license'/>
-                </Form.Field>
+                    <Form.Field>
+                        <label style={{color: "#FB3668"}}>License Plate Number</label>
+                        <input onChange={this.handleInputChange} placeholder='123 xyz' name='license'/>
+                    </Form.Field>
 
-            </Form.Group>
+                </Form.Group>
 
-            <Button onClick={this.handleSubmit} type='submit' style={{backgroundColor: "#FB3668", color: "white", marginTop: "20px", marginLeft: "auto", marginRight: "auto"}}>Add Vehicle</Button>
-        
-        </Form>
+                <Button onClick={this.handleSubmit} type='submit' style={{backgroundColor: "#FB3668", color: "white", marginTop: "20px", marginLeft: "auto", marginRight: "auto"}}>Add Vehicle</Button>
+            
+            </Form>
+
+        </div>
         )
     }
   }

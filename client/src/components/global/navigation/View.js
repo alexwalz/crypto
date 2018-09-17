@@ -73,17 +73,6 @@ export default class Navigation extends Component {
           Contact Us
         </Menu.Item>
 
-        {!this.state.authenticated ? null : this.state.authUser.role === 'admin' ? 
-          <Menu.Item
-            name='Admin Portal'
-            active={activeItem === 'admin'}
-            onClick={this.handleItemClick}
-
-          >
-            Admin Portal
-          </Menu.Item>
-        : null}
-
 
         {this.state.authenticated ? null :
         <Menu.Item position='right'>

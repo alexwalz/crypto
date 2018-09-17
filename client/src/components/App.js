@@ -26,9 +26,10 @@ class App extends Component {
               <Route path="/" exact component={HomePage} />
               <Route path="/login" exact component={Login} />
               <Route path="/signup" exact component={Signup} />
-              <Route path="/profile" exact component={Profile} />
+              <Route path="/profile" component={Profile} />
               <Route component={NotFound} />
             </Switch>
+
           </div>
         </CSSTransition>
       </TransitionGroup>

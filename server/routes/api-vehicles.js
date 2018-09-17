@@ -16,6 +16,10 @@ router.post('/', function (req, res) {
 });
 
 
+router.delete('/:id', function (req, res) {
+    vehiclesController.remove(req, res)
+});
+
 
 
 module.exports = router;
