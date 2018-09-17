@@ -17,6 +17,10 @@ const LeftSidebar =()=>{
             <Icon name='balance scale' />
             Services
         </Menu.Item>
+        <Menu.Item as='a'>
+            <Icon name='car' />
+            Vehicles
+        </Menu.Item>
     </Sidebar>
     )
 }
