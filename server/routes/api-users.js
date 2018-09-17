@@ -25,6 +25,8 @@ getToken = function (headers) {
   };
 
 
+
+
 router.get('/authenticate', passport.authenticate('jwt', { session: false}), function(req, res) {
 
     var token = getToken(req.headers);
@@ -53,6 +55,12 @@ router.get('/authenticate', passport.authenticate('jwt', { session: false}), fun
     }
 
   });
+
+  router.route('/all')
+    .get(function (req, res) {
+        usersController.findAll(req, res);
+  })
+
 
 
 

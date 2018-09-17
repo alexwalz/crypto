@@ -1,9 +1,10 @@
-const db = require('../models/Vehicles')
+const db        = require('../models/Vehicles')
+const usersDb   = require('../models/Users')
 
 module.exports = {
     findAll: function (req, res) {
         db
-            .find({})
+            .find({user: req.params.id})
             .then(function (dbModel) {
                 res.json(dbModel);
             })
@@ -14,7 +15,6 @@ module.exports = {
     findById: function (req, res) {
         db
             .findById(req.params.id)
-            .populate('Course')
             .then(function (dbModel) {
 
                 res.json(dbModel)
@@ -30,7 +30,9 @@ module.exports = {
             .create(req.body)
             .then(dbModel => {
                 res.json(dbModel);
+                return usersDb.findOneAndUpdate({_id: req.body.user}, { $push: { vehicles: dbModel._id } }, { new: true });
             })
+            
             .catch(err => {
                 console.log(err);
                 res.status(422).json(err);

@@ -3,7 +3,7 @@ import React, { Component} from 'react'
 import Sidebar from './Sidebar'
 import './styles.css'
 import axios from 'axios'
-
+import NewVehicle from '../vehicles/NewVehicle'
 
 
 class Profile extends Component {
@@ -32,6 +32,10 @@ class Profile extends Component {
             <div>
 
                 <Sidebar />
+
+                <div style={{marginLeft: "150px", padding: "5%"}}>
+                    <NewVehicle />
+                </div>
 
 
             </div>

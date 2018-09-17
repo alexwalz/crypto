@@ -1,9 +1,11 @@
-const db = require('../models/Users')
+const db            = require('../models/Users')
+const vehiclesDb    = require('../models/Vehicles')
 
 module.exports = {
     findAll: function (req, res) {
         db
             .find({})
+            .populate({ path: 'Vehicle', model: vehiclesDb})
             .then(function (dbModel) {
                 res.json(dbModel);
             })

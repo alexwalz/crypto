@@ -7,8 +7,12 @@ const vehiclesController    = require("../controllers/vehiclesController")
 
 mongoose.connect(db_url);
 
-router.get('/vehicles', function (req, res) {
-    res.json({ message: 'Vehicles API Initialized!' });
+router.get('/:id', function (req, res) {
+    vehiclesController.findAll(req, res)
+});
+
+router.post('/', function (req, res) {
+    vehiclesController.create(req, res)
 });
 
 
