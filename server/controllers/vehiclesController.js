@@ -2,7 +2,7 @@ const db        = require('../models/Vehicles')
 const usersDb   = require('../models/Users')
 
 module.exports = {
-    findAll: function (req, res) {
+    findAllByCustomer: function (req, res) {
         db
             .find({user: req.params.id})
             .then(function (dbModel) {
@@ -12,6 +12,18 @@ module.exports = {
                 res.json(err);
             });
     },
+
+    findAll: function (req, res) {
+        db
+            .find({})
+            .then(function (dbModel) {
+                res.json(dbModel);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    },
+
     findById: function (req, res) {
         db
             .findById(req.params.id)

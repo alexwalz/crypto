@@ -56,7 +56,7 @@ router.get('/authenticate', passport.authenticate('jwt', { session: false}), fun
 
   });
 
-  router.route('/all')
+  router.route('/')
     .get(function (req, res) {
         usersController.findAll(req, res);
   })

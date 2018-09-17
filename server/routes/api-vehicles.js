@@ -8,6 +8,10 @@ const vehiclesController    = require("../controllers/vehiclesController")
 mongoose.connect(db_url);
 
 router.get('/:id', function (req, res) {
+    vehiclesController.findAllByCustomer(req, res)
+});
+
+router.get('/', function (req, res) {
     vehiclesController.findAll(req, res)
 });
 

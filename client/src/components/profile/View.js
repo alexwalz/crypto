@@ -3,6 +3,7 @@ import Sidebar from './Sidebar'
 import './styles.css'
 import axios from 'axios'
 import Vehicles from '../vehicles/View'
+import AdminView from '../adminPortal/View'
 // eslint-disable-next-line 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -37,6 +38,7 @@ class Profile extends Component {
                 <div style={{marginLeft: "150px", padding: "5%"}}>
                     <Switch location={this.props.location}>
                         <Route path="/profile/vehicles" component={Vehicles} />
+                        <Route path="/profile/admin" component={AdminView} />
                     </Switch>
                 </div>
 
