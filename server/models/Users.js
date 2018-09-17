@@ -27,7 +27,6 @@ var UserSchema = new Schema({
     captainsClub: Boolean,
     role: String,
     lastLogin: Date,
-    vehicles: { type: mongoose.Schema.Types.ObjectId, ref: 'Vehicle', required: true },
 });
 
 UserSchema.pre('save', function (next) {

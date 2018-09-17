@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { Button, Form, Icon, Message } from 'semantic-ui-react'
+import { Button, Form, Icon, Message, Loader } from 'semantic-ui-react'
 import React, { Component} from 'react'
 import './styles.css'
 import axios from 'axios'
@@ -22,7 +22,8 @@ class LoginForm extends Component {
             username: "",
             password: "",
             error: false,
-            errorMessage: ""
+            errorMessage: "",
+            submitting: false
 		}
     }
 
@@ -57,6 +58,12 @@ class LoginForm extends Component {
     handleSubmit=(e)=>{
 
         e.preventDefault()
+
+        this.setState({
+            submitting: true
+        }, function(){
+            console.log(this.state)
+        })
 
         axios.post('api/auth/signup', this.state)
         .then((result) => {
@@ -165,7 +172,12 @@ class LoginForm extends Component {
 
                         </Form.Group>
 
-                        <Button onClick={this.handleSubmit} type='submit' style={{backgroundColor: "#FB3668", color: "white", width: "100%", marginTop: "20px"}}>Create Account</Button>
+                        {this.state.submitting ? 
+                            <Button disabled={true} onClick={this.handleSubmit} type='submit' style={{backgroundColor: "#FB3668", color: "white", width: "100%", marginTop: "20px"}}><Loader size='big' inverted active />Creating Account</Button> 
+                            :
+                            <Button onClick={this.handleSubmit} type='submit' style={{backgroundColor: "#FB3668", color: "white", width: "100%", marginTop: "20px"}}>Create Account</Button>
+                        }
+
                         <br/>
                         <p style={{color: "white", marginTop: "30px"}}>Already have an account? <a href='/login' style={{color: "#FB3668", paddingLeft: "9px"}}> Login Here</a></p>
                     </Form>

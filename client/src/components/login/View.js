@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { Button, Form, Icon, Message } from 'semantic-ui-react'
+import { Button, Form, Icon, Message, Loader } from 'semantic-ui-react'
 import React, { Component} from 'react'
 import './styles.css'
 import axios from 'axios'
@@ -11,7 +11,8 @@ class LoginForm extends Component {
         super(props);
 		this.state={
             username: "",
-            password: ""
+            password: "",
+            submitting: false,
 		}
     }
 
@@ -46,6 +47,8 @@ class LoginForm extends Component {
     }
 
     handleSubmit=(e)=>{
+
+        this.setState({submitting: true})
 
         e.preventDefault()
 
@@ -95,7 +98,13 @@ class LoginForm extends Component {
                         <label style={{color: "#FB3668"}}>Password</label>
                         <input onChange={this.handleInputChange} placeholder='*********' type='password' name='password'/>
                         </Form.Field>
-                        <Button type='submit' onClick={this.handleSubmit} style={{backgroundColor: "#FB3668", color: "white", width: "100%", marginTop: "20px"}}>Login</Button>
+
+                        {this.state.submitting ? 
+                            <Button type='submit' onClick={this.handleSubmit} style={{backgroundColor: "#FB3668", color: "white", width: "100%", marginTop: "20px"}}><Loader size='big' active inverted/>Logging In</Button>
+                            :
+                            <Button type='submit' onClick={this.handleSubmit} style={{backgroundColor: "#FB3668", color: "white", width: "100%", marginTop: "20px"}}>Login</Button>
+                        }
+                        
                         <br/>
                         <p style={{color: "white", marginTop: "30px"}}>To create a new account <a href='/signup' style={{color: "#FB3668", paddingLeft: "9px"}}>Click Here</a></p>
                     </Form>
