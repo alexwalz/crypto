@@ -63,7 +63,6 @@ router.get('/authenticate', passport.authenticate('jwt', { session: false}), fun
 
     if (token) {
         if(req.user.role === 'admin'){
-          console.log("success")
           usersController.findAll(req, res);
         }else{
             res.json({success: false, message: "Unauthorized"})

@@ -29,15 +29,11 @@ router.get('/:id', function (req, res) {
     vehiclesController.findAllByCustomer(req, res)
 });
 
-// router.get('/', function (req, res) {
-//     vehiclesController.findAll(req, res)
-// });
+
 
 router.get('/', passport.authenticate('jwt', { session: false}), function(req, res) {
 
     var token = getToken(req.headers);
-
-    console.log(req.user.role)
 
     if (token) {
         if(req.user.role === 'admin'){
@@ -48,15 +44,24 @@ router.get('/', passport.authenticate('jwt', { session: false}), function(req, r
     }
 })
 
-router.post('/', function (req, res) {
-    vehiclesController.create(req, res)
-});
+router.post('/', passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        vehiclesController.create(req, res)
+    }else{
+        res.json({success: false})
+    }
+})
 
 
-router.delete('/:id', function (req, res) {
-    vehiclesController.remove(req, res)
-});
-
+router.delete('/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        vehiclesController.remove(req, res)
+    }else{
+        res.json({success: false})
+    }
+})
 
 
 module.exports = router;
