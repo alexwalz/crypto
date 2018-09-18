@@ -13,8 +13,16 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
-    firstName: String,
-    lastName: String,
+    firstName: {
+        type: String,
+        uppercase: true,
+        require: true,
+    },
+    lastName: {
+        type: String,
+        uppercase: true,
+        require: true,
+    },
     phoneNumber: String,
     email: {
         type: String,

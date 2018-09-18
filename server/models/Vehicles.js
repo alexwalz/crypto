@@ -8,7 +8,10 @@ var VehiclesSchema = new Schema({
         year: Number,
         make: String,
         model: String,
-        license: String
+        license: {
+                type: String,
+                uppercase: true,
+            }
 });
 
 
