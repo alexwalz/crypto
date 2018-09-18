@@ -21,7 +21,7 @@ class LoginForm extends Component {
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
 
         axios.get('/api/users/authenticate').then(function(response){
-          window.location='/'
+          window.location='/profile'
         }).catch(function(err){
           console.log(err)
         })
