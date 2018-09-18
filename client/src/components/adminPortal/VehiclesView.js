@@ -10,6 +10,7 @@ class UsersView extends Component {
         super(props);
 		this.state={
             update: false,
+            search: "",
             authUser: {
                 role: 'customer'
             }
@@ -21,7 +22,6 @@ class UsersView extends Component {
         let currentComponent = this
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         axios.get('/api/vehicles').then(function(response){
-            console.log(response.data.success)
             if(response.data.success === false){
                 window.location= '/profile'
             }else{
@@ -34,19 +34,42 @@ class UsersView extends Component {
 
     }
 
+    updateSearch=(event)=>{
+        this.setState({search: event.target.value.substr(0,20), function(){
+            console.log(this.state.search)
+        }})
+    }
+
+
     render() {
+
+        let filteredVehicles;
+
+        if(this.state.update){
+
+            filteredVehicles = this.state.vehicles.filter(
+                (vehicle)=>{
+                    return(
+                        vehicle.license.indexOf(this.state.search) !== -1
+                    )
+                }
+            )
+        }
 
         return(
            <div className='admin-user-view' style={{marginTop: "5%"}}>
+
                 <h1><Icon name='car' style={{color: "#EF1B36"}} />Marina Cove Vehicles</h1>
+                <div style={{position: "relative", padding: "20px 0px 30px 0px"}}><input placeholder='License Plate Number' className='user-search-bar' type='text' value={this.state.search} onChange={this.updateSearch.bind(this)} /> <Icon disabled name='search' className='searchIcon' /></div>
+                
                 <Grid columns={3}>
                     <Grid.Row>
 
                         {this.state.update ?
                         
-                            this.state.vehicles.map(vehicle=>{
+                            filteredVehicles.map(vehicle=>{
                                 return(
-                                    <VehicleCard vehicle={vehicle} />
+                                    <VehicleCard key={vehicle._id} vehicle={vehicle} />
                                 )
                             })
 
