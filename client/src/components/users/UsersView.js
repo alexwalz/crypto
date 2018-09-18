@@ -75,7 +75,7 @@ class UsersView extends Component {
 
                         {this.state.update ?
                         
-                            filteredContacts.slice(0, 9).map(user=>{
+                            filteredContacts.slice(0, 12).map(user=>{
                                 return(
                                     <UserCard key={user._id} user={user} />
                                 )

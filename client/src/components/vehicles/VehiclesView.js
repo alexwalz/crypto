@@ -67,7 +67,7 @@ class VehiclesView extends Component {
 
                         {this.state.update ?
                         
-                            filteredVehicles.slice(0, 9).map(vehicle=>{
+                            filteredVehicles.slice(0, 12).map(vehicle=>{
                                 return(
                                     <VehicleCard key={vehicle._id} vehicle={vehicle} />
                                 )

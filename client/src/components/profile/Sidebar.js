@@ -53,7 +53,7 @@ class LeftSidebar extends Component {
 
                 {this.state.authUser.role === 'admin' ? 
 
-                    <Link to='/profile/admin'><Menu.Item as='a' >
+                    <Link to='/profile/admin/users'><Menu.Item as='a' >
                         <Label as='a' color='teal' ribbon style={{position: "absolute", marginLeft: "33px"}}>
                             Admin
                         </Label>

@@ -3,12 +3,17 @@ import './styles.css'
 import axios from 'axios'
 import UsersView from '../users/UsersView'
 import VehiclesView from '../vehicles/VehiclesView'
+import { Icon, Menu } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+// eslint-disable-next-line 
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class AdminView extends Component {
     
 	constructor(props) {
         super(props);
 		this.state={
+            activeItem: 'users',
             authUser: {
                 role: 'customer'
             }
@@ -30,12 +35,50 @@ class AdminView extends Component {
 
     }
 
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
     render() {
+
+        const { activeItem } = this.state
 
         return(
             <div>
-                <UsersView />
-                <VehiclesView />
+                <h1 style={{fontSize: "3rem", color: "#EF1B36", paddingBottom: "1%"}}>Administrator View</h1>
+
+                <Menu icon='labeled'>
+
+                    <Link to='/profile/admin/users'><Menu.Item name='users' active={activeItem === 'users'} onClick={this.handleItemClick}>
+                    <Icon name='users' />
+                    customers
+                    </Menu.Item></Link>
+
+                    <Link to='/profile/admin/vehicles'><Menu.Item
+                    name='car'
+                    active={activeItem === 'car'}
+                    onClick={this.handleItemClick}
+                    >
+                    <Icon name='car' />
+                    Vehicles
+                    </Menu.Item></Link>
+
+                    <Link to='/profile/admin/services'><Menu.Item
+                    name='balance scale'
+                    active={activeItem === 'balance scale'}
+                    onClick={this.handleItemClick}
+                    >
+                    <Icon name='balance scale' />
+                    Services
+                    </Menu.Item></Link>
+
+                </Menu>
+
+
+                <div style={{padding: "2% 2% 2% 2%"}}>
+                    <Switch location={this.props.location}>
+                        <Route path="/profile/admin/users" component={UsersView} />
+                        <Route path="/profile/admin/vehicles" component={VehiclesView} />
+                    </Switch>
+                </div>
 
             </div>
         )
