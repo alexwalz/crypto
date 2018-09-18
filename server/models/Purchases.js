@@ -5,7 +5,9 @@ var Schema = mongoose.Schema;
 var PurchasesSchema = new Schema({
         serviceName: String,
         price: Number,
-        status: String
+        status: String,
+        submitDate: Date,
+        dueDate: Date,
 });
 
 

@@ -67,10 +67,6 @@ class LeftSidebar extends Component {
                     <Icon name='user' />
                     Profile
                 </Menu.Item></Link>
-                <Link to='/profile/settings'><Menu.Item as='a'>
-                    <Icon name='settings' />
-                    Settings
-                </Menu.Item></Link>
                 <Link to='/profile/services'><Menu.Item as='a'>
                     <Icon name='balance scale' />
                     Services

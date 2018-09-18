@@ -7,7 +7,7 @@ var ServicesSchema = new Schema({
         size: String,
         price: Number,
         discount: Boolean,
-        discountPrice: Number
+        discountPrice: Number,
 });
 
 

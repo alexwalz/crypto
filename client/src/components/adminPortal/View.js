@@ -14,9 +14,8 @@ class AdminView extends Component {
         super(props);
 		this.state={
             activeItem: 'users',
-            authUser: {
-                role: 'customer'
-            }
+            updated: false,
+            authUser: {}
 		}
     }
 
@@ -27,7 +26,7 @@ class AdminView extends Component {
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         axios.get('/api/users/authenticate').then(function(response){
 
-            currentComponent.setState({authUser: response.data.authenticatedUser})
+            currentComponent.setState({authUser: response.data.authenticatedUser, updated: true})
 
         }).catch(function(err){
             console.log(err)
@@ -47,28 +46,35 @@ class AdminView extends Component {
 
                 <Menu icon='labeled'>
 
-                    <Link to='/profile/admin/users'><Menu.Item name='users' active={activeItem === 'users'} onClick={this.handleItemClick}>
-                    <Icon name='users' />
-                    customers
-                    </Menu.Item></Link>
+                { this.state.updated ? 
+                    this.state.authUser.role === 'admin' ?
+                            <Link to='/profile/admin/users'><Menu.Item name='users' active={activeItem === 'users'} onClick={this.handleItemClick}>
+                            <Icon name='users' />Customers</Menu.Item></Link>
+                     : null
+                    :null
+                }
 
-                    <Link to='/profile/admin/vehicles'><Menu.Item
-                    name='car'
-                    active={activeItem === 'car'}
-                    onClick={this.handleItemClick}
-                    >
-                    <Icon name='car' />
-                    Vehicles
-                    </Menu.Item></Link>
+                { this.state.updated ? 
+                    this.state.authUser.role === 'admin' ?
+                        <Link to='/profile/admin/vehicles'>
+                            <Menu.Item name='car' active={activeItem === 'car'} onClick={this.handleItemClick}>
+                            <Icon name='car' />Vehicles</Menu.Item>
+                        </Link>
+                     : null
+                    :null
+                }
 
-                    <Link to='/profile/admin/services'><Menu.Item
-                    name='balance scale'
-                    active={activeItem === 'balance scale'}
-                    onClick={this.handleItemClick}
-                    >
-                    <Icon name='balance scale' />
-                    Services
-                    </Menu.Item></Link>
+                { this.state.updated ? 
+                    this.state.authUser.role === 'admin' || this.state.authUser.role === 'employee' ?
+
+                    <Link to='/profile/admin/services'>
+                        <Menu.Item name='balance scale' active={activeItem === 'balance scale'} onClick={this.handleItemClick}>
+                        <Icon name='balance scale' />Services</Menu.Item>
+                    </Link>
+
+                    : null
+                  :null
+                }
 
                 </Menu>
 

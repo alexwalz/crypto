@@ -81,5 +81,15 @@ router.delete('/:id', passport.authenticate('jwt', { session: false}), function(
 })
 
 
+router.put('/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        usersController.update(req, res)
+    }else{
+        res.json({success: false})
+    }
+  })
+
+
 
 module.exports = router;
