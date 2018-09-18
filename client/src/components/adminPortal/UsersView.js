@@ -18,13 +18,17 @@ class UsersView extends Component {
 
     componentDidMount=()=>{
 
-
         let currentComponent = this
-        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
-        axios.get('/api/users').then(function(response){
 
-            console.log(response)
-            currentComponent.setState({users: response.data, update: true})
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
+
+        axios.get('/api/users').then(function(response){
+            console.log(response.data.success)
+            if(response.data.success === false){
+                window.location='/profile'
+            }else{
+                currentComponent.setState({users: response.data, update: true})
+            }
 
         }).catch(function(err){
             console.log(err)

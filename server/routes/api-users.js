@@ -56,10 +56,20 @@ router.get('/authenticate', passport.authenticate('jwt', { session: false}), fun
 
   });
 
-  router.route('/')
-    .get(function (req, res) {
-        usersController.findAll(req, res);
-  })
+
+  router.get('/', passport.authenticate('jwt', { session: false}), function(req, res) {
+
+    var token = getToken(req.headers);
+
+    if (token) {
+        if(req.user.role === 'admin'){
+          console.log("success")
+          usersController.findAll(req, res);
+        }else{
+            res.json({success: false, message: "Unauthorized"})
+        }
+    }
+})
 
 
 
