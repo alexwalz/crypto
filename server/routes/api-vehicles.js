@@ -64,4 +64,14 @@ router.delete('/:id', passport.authenticate('jwt', { session: false}), function(
 })
 
 
+router.delete('/:id/all', passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        vehiclesController.removeAll(req, res)
+    }else{
+        res.json({success: false})
+    }
+})
+
+
 module.exports = router;

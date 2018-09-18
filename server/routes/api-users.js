@@ -71,6 +71,15 @@ router.get('/authenticate', passport.authenticate('jwt', { session: false}), fun
 })
 
 
+router.delete('/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
+  var token = getToken(req.headers);
+  if (token) {
+      usersController.remove(req, res)
+  }else{
+      res.json({success: false})
+  }
+})
+
 
 
 module.exports = router;

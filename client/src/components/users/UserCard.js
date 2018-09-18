@@ -8,13 +8,15 @@ import { Card, Image, Button, Grid, Icon } from 'semantic-ui-react'
 const UserCard =(props)=>{
 
     const deleteUser =()=>{
-        axios.delete('/api/users/'+props.vehicle._id).then(function(response){
+        axios.delete('/api/users/'+props.user._id).then(function(response){
             if(response.status === 200){
-                window.location.reload()
+                axios.delete('/api/vehicles/'+props.user._id+'/all').then(function(response){
+                    if(response.status === 200){
+                        window.location.reload()
+                    }
+                }).catch(function(error){console.log(error)})
             }
-        }).catch(function(error){
-            console.log(error)
-        })
+        }).catch(function(error){console.log(error)})
     }
 
     return(
