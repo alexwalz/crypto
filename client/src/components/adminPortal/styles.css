@@ -1,19 +1,1 @@
-.user-search-bar:focus{
-    outline-width: 0;
-}
 
-
-.user-search-bar{
-    padding: 10px 10px 10px 35px;
-    width: 280px;
-    height: 35px;
-    border: 1px solid #EF1B36;
-    border-radius: 999px;
-    position: relative;
-}
-
-.searchIcon{
-    position: absolute;
-    left: 17px;
-    top: 27px
-}

@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import './styles.css'
 import axios from 'axios'
-import UsersView from './UsersView'
-import VehiclesView from './VehiclesView'
+import UsersView from '../users/UsersView'
+import VehiclesView from '../vehicles/VehiclesView'
 
 class AdminView extends Component {
     

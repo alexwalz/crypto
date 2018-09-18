@@ -13,6 +13,7 @@ class LoginForm extends Component {
             user: "",
             update: false,
             error: false,
+            formErrors: true,
             vehicles: {},
             newVehicle: {
                 type: "",
@@ -63,7 +64,18 @@ class LoginForm extends Component {
                 ...prevState.newVehicle,
                 [name]: value,
             },
-        }));
+        }), function(){
+            this.validate()
+        });
+    }
+
+    validate=()=>{
+        if(this.state.newVehicle.year !== '' && this.state.newVehicle.make !== '' && this.state.newVehicle.model !== '' && this.state.newVehicle.type !== '' && this.state.newVehicle.license !== '' ){
+            this.setState({formErrors: false})
+        }else{
+
+        }
+
     }
 
     handleSubmit=(e)=>{
@@ -135,7 +147,7 @@ class LoginForm extends Component {
 
                 </Form.Group>
 
-                <Button onClick={this.handleSubmit} type='submit' style={{backgroundColor: "#FB3668", color: "white", marginTop: "20px", marginLeft: "auto", marginRight: "auto"}}>Add Vehicle</Button>
+                <Button onClick={this.handleSubmit} disabled={this.state.formErrors} type='submit' style={{backgroundColor: "#FB3668", color: "white", marginTop: "20px", marginLeft: "auto", marginRight: "auto"}}>Add Vehicle</Button>
             
             </Form>
 

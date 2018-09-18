@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import VehicleCard from '../vehicles/VehicleCard'
+import VehicleCard from './VehicleCard'
 import './styles.css'
 import axios from 'axios'
 import { Grid, Icon } from 'semantic-ui-react'
 
-class UsersView extends Component {
+class VehiclesView extends Component {
     
 	constructor(props) {
         super(props);
@@ -35,7 +35,7 @@ class UsersView extends Component {
     }
 
     updateSearch=(event)=>{
-        this.setState({search: event.target.value.substr(0,20), function(){
+        this.setState({search: event.target.value.substr(0,20).toLowerCase(), function(){
             console.log(this.state.search)
         }})
     }
@@ -50,7 +50,7 @@ class UsersView extends Component {
             filteredVehicles = this.state.vehicles.filter(
                 (vehicle)=>{
                     return(
-                        vehicle.license.indexOf(this.state.search) !== -1
+                        vehicle.license.toLowerCase().indexOf(this.state.search) !== -1
                     )
                 }
             )
@@ -60,14 +60,14 @@ class UsersView extends Component {
            <div className='admin-user-view' style={{marginTop: "5%"}}>
 
                 <h1><Icon name='car' style={{color: "#EF1B36"}} />Marina Cove Vehicles</h1>
-                <div style={{position: "relative", padding: "20px 0px 30px 0px"}}><input placeholder='License Plate Number' className='user-search-bar' type='text' value={this.state.search} onChange={this.updateSearch.bind(this)} /> <Icon disabled name='search' className='searchIcon' /></div>
+                <div style={{position: "relative", padding: "20px 0px 30px 0px"}}><input placeholder='License Plate Number' className='vehicle-search-bar' type='text' value={this.state.search} onChange={this.updateSearch.bind(this)} /> <Icon disabled name='search' className='searchIcon' /></div>
                 
                 <Grid columns={3}>
                     <Grid.Row>
 
                         {this.state.update ?
                         
-                            filteredVehicles.map(vehicle=>{
+                            filteredVehicles.slice(0, 9).map(vehicle=>{
                                 return(
                                     <VehicleCard key={vehicle._id} vehicle={vehicle} />
                                 )
@@ -84,4 +84,4 @@ class UsersView extends Component {
     }
 }
 
-export default UsersView
+export default VehiclesView

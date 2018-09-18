@@ -21,9 +21,11 @@ class LoginForm extends Component {
             role: "customer",
             username: "",
             password: "",
+            confirmPassword: "",
             error: false,
             errorMessage: "",
-            submitting: false
+            submitting: false,
+            formErrors: true
 		}
     }
 
@@ -52,7 +54,31 @@ class LoginForm extends Component {
 		const name = event.target.name;
 		this.setState({
 			[name]: value
+        }, function(){
+            this.validate()
         });
+    }
+
+    validate=()=>{
+        if(
+            this.state.firstName !== '' &&
+            this.state.lastName !== '' &&
+            this.state.email !== '' &&
+            this.state.phoneNumber !== '' &&
+            this.state.address !== '' &&
+            this.state.city !== '' &&
+            this.state.state !== '' &&
+            this.state.username !== '' &&
+            this.state.password !== '' &&
+            this.state.confirmPassword !== ''
+        ){
+            if(this.state.password === this.state.confirmPassword){
+                this.setState({formErrors: false, error: false, errorMessage: ""})
+            }else{
+                this.setState({error: true, errorMessage: "Passwords Do No Match" })
+            }
+        
+        }
     }
 
     handleSubmit=(e)=>{
@@ -175,7 +201,7 @@ class LoginForm extends Component {
                         {this.state.submitting ? 
                             <Button disabled={true} onClick={this.handleSubmit} type='submit' style={{backgroundColor: "#FB3668", color: "white", width: "100%", marginTop: "20px"}}><Loader size='big' inverted active />Creating Account</Button> 
                             :
-                            <Button onClick={this.handleSubmit} type='submit' style={{backgroundColor: "#FB3668", color: "white", width: "100%", marginTop: "20px"}}>Create Account</Button>
+                            <Button onClick={this.handleSubmit} disabled={this.state.formErrors} type='submit' style={{backgroundColor: "#FB3668", color: "white", width: "100%", marginTop: "20px"}}>Create Account</Button>
                         }
 
                         <br/>

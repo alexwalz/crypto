@@ -43,7 +43,7 @@ class UsersView extends Component {
 
 
     updateSearch=(event)=>{
-        this.setState({search: event.target.value.substr(0,20), function(){
+        this.setState({search: event.target.value.substr(0,20).toLowerCase(), function(){
             console.log(this.state.search)
         }})
     }
@@ -56,8 +56,9 @@ class UsersView extends Component {
 
             filteredContacts = this.state.users.filter(
                 (user)=>{
+                    let fullName = user.firstName + ' ' + user.lastName
                     return(
-                        user.lastName.indexOf(this.state.search) !== -1
+                        fullName.toLowerCase().indexOf(this.state.search) !== -1
                     )
                 }
             )
@@ -67,14 +68,14 @@ class UsersView extends Component {
            <div className='admin-user-view'>
                 <h1><Icon name='users' style={{color: "#EF1B36"}}/>Marina Cove Customers</h1>
 
-                <div style={{position: "relative", padding: "20px 0px 30px 0px"}}><input placeholder='Last Name' className='user-search-bar' type='text' value={this.state.search} onChange={this.updateSearch.bind(this)} /> <Icon disabled name='search' className='searchIcon' /></div>
+                <div style={{position: "relative", padding: "20px 0px 30px 0px"}}><input placeholder='Customer Name' className='user-search-bar' type='text' value={this.state.search} onChange={this.updateSearch.bind(this)} /> <Icon disabled name='search' className='searchIcon' /></div>
 
                 <Grid columns={3}>
                     <Grid.Row>
 
                         {this.state.update ?
                         
-                            filteredContacts.map(user=>{
+                            filteredContacts.slice(0, 9).map(user=>{
                                 return(
                                     <UserCard key={user._id} user={user} />
                                 )

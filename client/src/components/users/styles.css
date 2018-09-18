@@ -1,13 +1,9 @@
-.vehicles-container{
-    margin-top: 5%
-}
-
-.vehicle-search-bar:focus{
+.user-search-bar:focus{
     outline-width: 0;
 }
 
 
-.vehicle-search-bar{
+.user-search-bar{
     padding: 10px 10px 10px 35px;
     width: 280px;
     height: 35px;
