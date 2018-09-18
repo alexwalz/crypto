@@ -31,6 +31,11 @@ class LeftSidebar extends Component {
 
     }
 
+    logout = () => {
+        localStorage.removeItem('jwtToken');
+        window.location.reload();
+      }
+
     render() {
 
         return(
@@ -41,6 +46,10 @@ class LeftSidebar extends Component {
                     Home
                 </Menu.Item></Link>
 
+                <Menu.Item as='a' onClick={this.logout}>
+                    <Icon name='arrow left' />
+                    Logout
+                </Menu.Item>
 
                 {this.state.authUser.role === 'admin' ? 
 

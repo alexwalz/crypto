@@ -58,7 +58,7 @@ class LoginForm extends Component {
 
             localStorage.setItem('jwtToken', result.data.token);
 
-            this.props.history.push('/')
+            this.props.history.push('/profile')
 
           })
 
