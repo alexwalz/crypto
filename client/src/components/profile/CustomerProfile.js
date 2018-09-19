@@ -25,8 +25,6 @@ class UserProfile extends Component {
 
                 axios.get('/api/users/profile/'+_id).then(function(response){
 
-                    console.log(response)
-
                     if(response.status === 200){
 
                         if(response.data.success === false){
@@ -43,18 +41,53 @@ class UserProfile extends Component {
 
     }
 
+enableCaptainsClub=()=>{
 
- deleteUser =()=>{
-        axios.delete('/api/users/'+this.props.match.params.id).then(function(response){
-            if(response.status === 200){
-                axios.delete('/api/vehicles/'+this.props.match.params.id+'/all').then(function(response){
-                    if(response.status === 200){
-                        window.location.reload()
-                    }
-                }).catch(function(error){console.log(error)})
-            }
-        }).catch(function(error){console.log(error)})
-    }
+    let currentComponent = this
+    axios.put('/api/users/'+this.props.match.params.id, {captainsClub: true}).then(function(response){
+        console.log(response)
+        if(response.status === 200){
+            currentComponent.setState((prevState, props) => ({
+                user: {
+                    ...prevState.user,
+                    captainsClub: true,
+                },
+            }));
+        }
+    })
+}
+
+disableCaptainsClub=()=>{
+
+    let currentComponent = this
+    axios.put('/api/users/'+this.props.match.params.id, {captainsClub: false}).then(function(response){
+        console.log(response)
+        if(response.status === 200){
+            currentComponent.setState((prevState, props) => ({
+                user: {
+                    ...prevState.user,
+                    captainsClub: false,
+                },
+            }));
+        }
+    })
+}
+
+
+deleteUser =()=>{
+
+    let _id = this.props.match.params.id
+
+    axios.delete('/api/users/'+_id).then(function(response){
+        if(response.status === 200){
+            axios.delete(`/api/vehicles/${_id}/all`).then(function(response){
+                if(response.status === 200){
+                    window.location = '/profile/admin/users'
+                }
+            }).catch(function(error){console.log(error)})
+        }
+    }).catch(function(error){console.log(error)})
+}
 
 
     errorMessage = () => {
@@ -80,7 +113,10 @@ class UserProfile extends Component {
                             <Header as='h2' icon textAlign='center'>
                                 <Icon name='user' circular style={{color: "#EF1B36"}}/>
                                 <Header.Content>{this.state.user.firstName + ' ' + this.state.user.lastName}</Header.Content>
+                                {this.state.user.captainsClub ? <Header.Content style={{color: "#EF1B36"}}>Captains Club Member</Header.Content> : null}
                             </Header>
+
+
 
                             <Grid columns={3} centered divided style={{marginTop: "60px"}}>
                                 <Grid.Row> 
@@ -139,6 +175,8 @@ class UserProfile extends Component {
                                     Delete User
                                     <Icon name='trash' />
                                 </Button>
+
+                                {!this.state.user.captainsClub ?  <Button icon labelPosition='left' onClick={this.enableCaptainsClub}><Icon name='star'/>Enable Captains Club</Button> : <Button icon labelPosition='left' onClick={this.disableCaptainsClub}><Icon name='star'/>Disable Captains Club</Button>}
 
                             </div>
 

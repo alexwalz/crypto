@@ -32,9 +32,19 @@ var UserSchema = new Schema({
     city: String,
     state: String,
     zip: String,
-    captainsClub: Boolean,
-    role: String,
+    captainsClub: {
+        type: Boolean,
+        default: false
+      },
+    role: {
+        type: String,
+        default: 'customer'
+      },
     lastLogin: Date,
+    dateCreated: {
+        type: Date,
+        default: Date.now
+      }
 });
 
 UserSchema.pre('save', function (next) {

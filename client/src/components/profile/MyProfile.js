@@ -78,6 +78,7 @@ class UserProfile extends Component {
                         <Header as='h2' icon textAlign='center'>
                             <Icon name='user' circular style={{color: "#EF1B36"}}/>
                             <Header.Content>{this.state.authUser.firstName + ' ' + this.state.authUser.lastName}</Header.Content>
+                            {this.state.authUser.captainsClub ? <Header.Content style={{color: "#EF1B36"}}>Captains Club Member</Header.Content> : null}
                             <Button onClick={this.profileEdit} style={{marginTop: "10px"}}>Edit Profile</Button>
                         </Header>
 
