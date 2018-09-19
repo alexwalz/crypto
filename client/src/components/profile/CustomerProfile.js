@@ -4,7 +4,6 @@ import './styles.css'
 import axios from 'axios'
 import UserServiceHistory from './UserServiceHistory'
 import UserVehicles from '../vehicles/ProfileVehicles'
-import {Link} from 'react-router-dom'
 
 class UserProfile extends Component {
     

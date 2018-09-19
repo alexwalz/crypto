@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import Navbar from '../global/navigation/View'
+import LandingPage from './LandingPage'
 
 
 class HomePage extends Component {
@@ -36,7 +37,7 @@ class HomePage extends Component {
     return (
       <div className="App">
         <Navbar/>
-
+        <LandingPage/>
       </div>
     );
   }

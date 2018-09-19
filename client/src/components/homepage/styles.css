@@ -1,0 +1,23 @@
+.landing-page{
+    height: 100vh;
+    background-color: #EF1B36;
+}
+
+.landing-page-text{
+    margin: auto;
+    padding-top: 30vh;
+}
+
+.landing-page-title{
+    font-size: 5rem;
+    color: white
+}
+
+.landing-page-subtitle{
+    font-size: 1.5rem;
+    color: #1E1E1E;
+}
+
+.contact-button-container{
+    padding-top: 50px;
+}
