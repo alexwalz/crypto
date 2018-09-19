@@ -21,7 +21,7 @@ const UserCard =(props)=>{
                     <Card.Description style={{paddingTop: "20px"}}>
                         <Icon disabled name='phone' />{props.user.phoneNumber}<br/><br/>
                         <Icon disabled name='building' />{props.user.address}<br/>
-                        <div style={{marginLeft: "20px"}}>{props.user.city + props.user.state + ", " + props.user.zip}</div>
+                        <div style={{marginLeft: "20px"}}>{props.user.city + ' ' + props.user.state + ", " + props.user.zip}</div>
                             <br/>
                         <Icon disabled name='mail' />{props.user.email}
                     </Card.Description>
