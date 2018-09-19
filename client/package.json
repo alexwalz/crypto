@@ -1,5 +1,5 @@
 {
-  "name": "Marina Cove Client",
+  "name": "marina-cove-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,10 +17,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.3.3",
-    "semantic-ui-react": "^0.82.5",
-    "engines": {
-      "node": "10.8.x"
-    }
+    "semantic-ui-react": "^0.82.5"
   },
   "scripts": {
     "start": "react-scripts start",
