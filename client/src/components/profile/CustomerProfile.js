@@ -25,10 +25,16 @@ class UserProfile extends Component {
 
                 axios.get('/api/users/profile/'+_id).then(function(response){
 
+                    console.log(response)
+
                     if(response.status === 200){
 
                         if(response.data.success === false){
-                            window.location ='/profile'
+                            if(response.data.errMessage === 'unable to find user'){
+                                window.location='/404'
+                            }else{
+                                window.location ='/profile'
+                            }
                         }else{
                             currentComponent.setState({user: response.data, update: true})
                         }
@@ -113,19 +119,31 @@ deleteUser =()=>{
                         <div style={{padding: "0 0 80px 0"}}>
 
                             <Button.Group>
-                                <Link to='/profile/admin/users'>
-                                    <Button icon labelPosition='left' color='blue'>
-                                        <Icon name='arrow left' />
-                                        Go Back
-                                    </Button>
-                                </Link>
 
-                                <Button icon labelPosition='left' color='red' onClick={this.deleteUser}>
+                                <Button icon labelPosition='left' style={{backgroundColor: "#EF1B36", color: "white"}} href='/profile/admin/users'>
+                                    <Icon name='arrow left' />
+                                    Go Back
+                                </Button>
+                                
+                                {!this.state.user.captainsClub ?  
+                                    <Button icon labelPosition='left' onClick={this.enableCaptainsClub} style={{backgroundColor: "#EF1B36", color: "white"}}><Icon name='star'/>Enable Captains Club</Button> 
+                                    : null
+                                }
+
+                            </Button.Group>
+
+                            <Button.Group floated='right'>
+
+                                {this.state.user.captainsClub ?  
+                                        <Button floated='right' icon labelPosition='left' onClick={this.disableCaptainsClub}><Icon name='star'/>Disable Captains Club</Button>
+                                        :null
+                                    }
+
+                                <Button icon labelPosition='left' onClick={this.deleteUser} floated='right'>
                                     Delete User
                                     <Icon name='trash' />
                                 </Button>
 
-                                {!this.state.user.captainsClub ?  <Button icon labelPosition='left' onClick={this.enableCaptainsClub}><Icon name='star'/>Enable Captains Club</Button> : <Button icon labelPosition='left' onClick={this.disableCaptainsClub}><Icon name='star'/>Disable Captains Club</Button>}
                             </Button.Group>
 
                         </div>

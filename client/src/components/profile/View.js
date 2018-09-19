@@ -8,6 +8,7 @@ import MyProfile from './MyProfile'
 import CustomerProfiles from './CustomerProfile'
 // eslint-disable-next-line 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import NotFound from '../NotFound'
 
 
 class Profile extends Component {
@@ -43,6 +44,7 @@ class Profile extends Component {
                         <Route path="/profile/admin" component={AdminView} />
                         <Route path="/profile/user/:id"  component={CustomerProfiles} />
                         <Route path="/profile" user={this.state.authUser} component={MyProfile} />
+                        <Route component={NotFound} />
                     </Switch>
                 </div>
 

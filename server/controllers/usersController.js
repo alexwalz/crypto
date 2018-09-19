@@ -21,7 +21,7 @@ module.exports = {
 
             })
             .catch(function (err) {
-                res.json(err);
+                res.json({success: false, errMessage: "unable to find user"});
             });
     },
     
