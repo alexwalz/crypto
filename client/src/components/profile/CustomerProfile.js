@@ -109,13 +109,33 @@ deleteUser =()=>{
             <div>
                 {this.state.update ? 
                     <div>
+
+                        <div style={{padding: "0 0 80px 0"}}>
+
+                            <Button.Group>
+                                <Link to='/profile/admin/users'>
+                                    <Button icon labelPosition='left' color='blue'>
+                                        <Icon name='arrow left' />
+                                        Go Back
+                                    </Button>
+                                </Link>
+
+                                <Button icon labelPosition='left' color='red' onClick={this.deleteUser}>
+                                    Delete User
+                                    <Icon name='trash' />
+                                </Button>
+
+                                {!this.state.user.captainsClub ?  <Button icon labelPosition='left' onClick={this.enableCaptainsClub}><Icon name='star'/>Enable Captains Club</Button> : <Button icon labelPosition='left' onClick={this.disableCaptainsClub}><Icon name='star'/>Disable Captains Club</Button>}
+                            </Button.Group>
+
+                        </div>
+
                         <div>
                             <Header as='h2' icon textAlign='center'>
                                 <Icon name='user' circular style={{color: "#EF1B36"}}/>
                                 <Header.Content>{this.state.user.firstName + ' ' + this.state.user.lastName}</Header.Content>
                                 {this.state.user.captainsClub ? <Header.Content style={{color: "#EF1B36"}}>Captains Club Member</Header.Content> : null}
                             </Header>
-
 
 
                             <Grid columns={3} centered divided style={{marginTop: "60px"}}>
@@ -163,22 +183,6 @@ deleteUser =()=>{
                             <UserVehicles id={this.props.match.params.id}/>
                         </div>
 
-                        <div style={{padding: "5% 0 5% 0"}}>
-                                <Link to='/profile/admin/users'>
-                                    <Button icon labelPosition='left' color='blue'>
-                                        <Icon name='arrow left' />
-                                        Go Back
-                                    </Button>
-                                </Link>
-
-                                <Button icon labelPosition='left' color='red' onClick={this.deleteUser}>
-                                    Delete User
-                                    <Icon name='trash' />
-                                </Button>
-
-                                {!this.state.user.captainsClub ?  <Button icon labelPosition='left' onClick={this.enableCaptainsClub}><Icon name='star'/>Enable Captains Club</Button> : <Button icon labelPosition='left' onClick={this.disableCaptainsClub}><Icon name='star'/>Disable Captains Club</Button>}
-
-                            </div>
 
                     </div>
                     : null
