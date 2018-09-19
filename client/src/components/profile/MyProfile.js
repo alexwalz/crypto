@@ -19,7 +19,6 @@ class UserProfile extends Component {
         var currentComponent = this
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         axios.get('/api/users/authenticate').then(function(response){
-            console.log(response)
             currentComponent.setState({authUser: response.data.authenticatedUser, update: true})
         }).catch(function(err){
           console.log(err)
@@ -34,16 +33,13 @@ class UserProfile extends Component {
                     ...prevState.authUser,
                     [name]: value,
                 },
-            }), function(){
-                console.log(this.state.authUser)
-            });
+            }));
         }
 
         handleSubmit=()=>{
             let  currentComponent = this
 
             axios.put('/api/users/'+this.state.authUser.id, this.state.authUser).then(function(response){
-                console.log(response)
 
                 if(response.status === 200){
                     currentComponent.setState({edit: false, error: false})

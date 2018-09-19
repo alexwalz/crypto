@@ -26,6 +26,10 @@ class AdminView extends Component {
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
         axios.get('/api/users/authenticate').then(function(response){
 
+            if(response.data.authenticatedUser.role === 'customer'){
+                window.location = '/profile'
+            }
+
             currentComponent.setState({authUser: response.data.authenticatedUser, updated: true})
 
         }).catch(function(err){

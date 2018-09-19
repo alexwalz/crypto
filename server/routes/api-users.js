@@ -81,6 +81,23 @@ router.delete('/:id', passport.authenticate('jwt', { session: false}), function(
 })
 
 
+router.get('/profile/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
+
+    var token = getToken(req.headers);
+
+    if(req.user.role !=='customer'){
+        if (token) {
+            usersController.findById(req, res)
+        }else{
+            res.json({success: false})
+        }
+    }else{
+        res.json({success: false, errMessage: "You must be an Admin or Employee to view this information"})
+    }
+
+  })
+
+
 router.put('/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
     if (token) {

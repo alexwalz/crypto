@@ -1,23 +1,11 @@
 import React from 'react'
 import './styles.css'
-import axios from 'axios'
 import { Card, Image, Button, Grid, Icon } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 
 
 const UserCard =(props)=>{
-
-    const deleteUser =()=>{
-        axios.delete('/api/users/'+props.user._id).then(function(response){
-            if(response.status === 200){
-                axios.delete('/api/vehicles/'+props.user._id+'/all').then(function(response){
-                    if(response.status === 200){
-                        window.location.reload()
-                    }
-                }).catch(function(error){console.log(error)})
-            }
-        }).catch(function(error){console.log(error)})
-    }
 
     return(
 
@@ -39,13 +27,10 @@ const UserCard =(props)=>{
                 </Card.Content>
 
                 <Card.Content extra>
-                    <div className='ui two buttons'>
-                        <Button basic color='green'>
-                        Profile
-                        </Button>
-                        <Button basic color='red' onClick={deleteUser}>
-                        Delete
-                        </Button>
+                    <div>
+                        <Link to={'/profile/user/'+ props.user._id}><Button basic style={{width: "100%", border: "1px solid #EF1B36"}}>
+                        View Profile
+                        </Button></Link>
                     </div>
                 </Card.Content>
 

@@ -9,6 +9,7 @@ import { Route, withRouter, Switch } from "react-router-dom";
 import Profile from './profile/View'
 
 
+
 class App extends Component {
   render() {
     const currentKey = this.props.location.pathname.split("/")[1] || "/";

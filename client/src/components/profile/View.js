@@ -4,7 +4,8 @@ import './styles.css'
 import axios from 'axios'
 import Vehicles from '../vehicles/View'
 import AdminView from '../adminPortal/View'
-import UserProfile from './Profile'
+import MyProfile from './MyProfile'
+import CustomerProfiles from './CustomerProfile'
 // eslint-disable-next-line 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -41,7 +42,8 @@ class Profile extends Component {
                     <Switch location={this.props.location}>
                         <Route path="/profile/vehicles" component={Vehicles} />
                         <Route path="/profile/admin" component={AdminView} />
-                        <Route path="/profile" user={this.state.authUser} component={UserProfile} />
+                        <Route path="/profile/user/:id"  component={CustomerProfiles} />
+                        <Route path="/profile" user={this.state.authUser} component={MyProfile} />
                     </Switch>
                 </div>
 

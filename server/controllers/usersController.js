@@ -5,7 +5,6 @@ module.exports = {
     findAll: function (req, res) {
         db
             .find({})
-            .populate({ path: 'Vehicle', model: vehiclesDb})
             .then(function (dbModel) {
                 res.json(dbModel);
             })
@@ -14,9 +13,8 @@ module.exports = {
             });
     },
     findById: function (req, res) {
-        console.log(req.params)
         db
-            .findById({username: req.params.username})
+            .findById(req.params.id)
             .then(function (dbModel) {
 
                 res.json(dbModel)
