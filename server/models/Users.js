@@ -44,7 +44,13 @@ var UserSchema = new Schema({
     dateCreated: {
         type: Date,
         default: Date.now
-      }
+      },
+    active: {
+    type: Boolean,
+    default: false
+    },
+    activeHash: String,
+    resetPasswordHash: String
 });
 
 UserSchema.pre('save', function (next) {

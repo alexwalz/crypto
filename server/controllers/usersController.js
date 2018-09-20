@@ -24,6 +24,14 @@ module.exports = {
                 res.json({success: false, errMessage: "unable to find user"});
             });
     },
+
+
+    confirm: function (req, res) {
+        db
+            .findOneAndUpdate({activeHash: req.params.id}, {active: true})
+            .then(dbModel => res.json({confirm: true}))
+            .catch(err => res.status(422).json({confirm: false}));
+    },
     
     create: function (req, res) {
         db

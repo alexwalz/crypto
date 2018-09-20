@@ -7,6 +7,7 @@ import Signup from './signup/View'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Route, withRouter, Switch } from "react-router-dom";
 import Profile from './profile/View'
+import ConfirmPage from './Confirm'
 
 
 
@@ -28,6 +29,7 @@ class App extends Component {
               <Route path="/login" exact component={Login} />
               <Route path="/signup" exact component={Signup} />
               <Route path="/profile" component={Profile} />
+              <Route path='/confirm/:id' component={ConfirmPage} />
               <Route path='/404' component={NotFound} />
               <Route component={NotFound} />
             </Switch>

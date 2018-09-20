@@ -11,7 +11,8 @@ class UserProfile extends Component {
         super(props);
 		this.state={
             update: false,
-            error: false
+            error: false,
+            color: 'red',
         }
     }
 
@@ -35,7 +36,11 @@ class UserProfile extends Component {
                                 window.location ='/profile'
                             }
                         }else{
-                            currentComponent.setState({user: response.data, update: true})
+                            currentComponent.setState({user: response.data, update: true}, function(response){
+                                if(this.state.user.active){
+                                    currentComponent.setState({color: "green"})
+                                }
+                            })
                         }
                         
                     }
@@ -113,6 +118,7 @@ deleteUser =()=>{
         return(
             <div>
                 {this.state.update ? 
+                    
                     <div>
 
                         <div style={{padding: "0 0 80px 0"}}>
@@ -184,7 +190,7 @@ deleteUser =()=>{
                                             <Icon name='mail' />
                                             <Header.Content>
                                                 Email
-                                            <Header.Subheader>{this.state.user.email}</Header.Subheader>
+                                            <Header.Subheader style={{color: this.state.color}}>{this.state.user.email}</Header.Subheader>
                                             </Header.Content>
                                         </Header>
                                     </Grid.Column>

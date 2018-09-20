@@ -44,7 +44,8 @@ router.get('/authenticate', passport.authenticate('jwt', { session: false}), fun
             state: req.user.state,
             zip: req.user.zip,
             role: req.user.role,
-            captainsClub: req.user.captainsClub
+            captainsClub: req.user.captainsClub,
+            active: req.user.active
         }
 
         res.send({authenticatedUser: authenticatedUser })

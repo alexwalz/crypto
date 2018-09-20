@@ -13,6 +13,7 @@ class LoginForm extends Component {
             username: "",
             password: "",
             submitting: false,
+            message: ""
 		}
     }
 
@@ -31,7 +32,7 @@ class LoginForm extends Component {
          return(
             <Message negative>
             <Message.Header>Error Logging In</Message.Header>
-                <p>Invalid Username or Password.  Please try again.</p>
+                <p>{this.state.message}</p>
             </Message>
          )
     }
@@ -69,7 +70,13 @@ class LoginForm extends Component {
             this.setState({error: true, errMessage: 'Login failed. Username or password not match', submitting: false})
 
             if(error.response.status === 401) {
+              console.log(error)  
               this.setState({ message: 'Login failed. Username or password not match' });
+            }else if(error.response.status === 403){
+                console.log(error)  
+                this.setState({ message: 'You have not verified your email address.  Please check your email' });
+            }else if(error.response.status === 400){
+                this.setState({message: "Authentication failed. Invalid Username."})
             }
 
           });

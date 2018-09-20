@@ -7,6 +7,12 @@ import {Link} from 'react-router-dom'
 
 const UserCard =(props)=>{
 
+    let activeColor = 'red';
+     
+    if(props.user.active){
+        activeColor = 'green'
+    }
+
     return(
 
         <Grid.Column style={{marginTop: "20px"}}>
@@ -19,11 +25,15 @@ const UserCard =(props)=>{
                     <Card.Meta style={{color: "#EF1B36"}}>{props.user.role === 'admin' ? <Icon name='star'/> : <Icon name='user'/>} {props.user.role.toUpperCase()}</Card.Meta>
                     <Card.Meta style={{color: "#EF1B36"}}>{props.user.captainsClub ? <div><Icon name='star'/>Captains Club Member</div> : null}</Card.Meta>
                     <Card.Description style={{paddingTop: "20px"}}>
-                        <Icon disabled name='phone' />{props.user.phoneNumber}<br/><br/>
-                        <Icon disabled name='building' />{props.user.address}<br/>
+                        <Icon name='phone' />{props.user.phoneNumber}<br/><br/>
+                        <Icon name='building' />{props.user.address}<br/>
                         <div style={{marginLeft: "20px"}}>{props.user.city + ', ' + props.user.state + " " + props.user.zip}</div>
                             <br/>
-                        <Icon disabled name='mail' />{props.user.email}
+
+                        
+
+                        <Icon  name='mail' /><span style={{color: activeColor}}>{props.user.email}</span>
+
                     </Card.Description>
                 </Card.Content>
 
