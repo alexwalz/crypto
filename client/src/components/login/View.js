@@ -114,6 +114,7 @@ class LoginForm extends Component {
                         
                         <br/>
                         <p style={{color: "white", marginTop: "30px"}}>To create a new account <a href='/signup' style={{color: "#FB3668", paddingLeft: "9px"}}>Click Here</a></p>
+                        <p style={{color: "white", marginTop: "30px"}}>Forgot your password? <a href='/forgot-password' style={{color: "#FB3668", paddingLeft: "9px"}}>Click Here</a></p>
                     </Form>
 
                 </div>

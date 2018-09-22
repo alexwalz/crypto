@@ -119,6 +119,18 @@ router.put('/:id', passport.authenticate('jwt', { session: false}), function(req
     }
   })
 
-  router.put('/password/update/:id')
+
+  router.post('/forgot-password', function (req, res) {
+        usersController.unknownUpdatePassword(req, res)
+  });
+
+  router.get('/verify-hash/:hash', function (req, res) {
+    usersController.verifyHash(req, res)
+});
+
+
+  router.post('/password-reset/:hash', function (req, res) {
+    usersController.updatePasswordHash(req, res)
+});
 
 module.exports = router;

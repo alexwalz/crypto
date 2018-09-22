@@ -8,7 +8,7 @@ import MyProfile from './MyProfile'
 import CustomerProfiles from './CustomerProfile'
 // eslint-disable-next-line 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NotFound from '../NotFound'
+import NotFound from '../global/NotFound'
 
 
 class Profile extends Component {

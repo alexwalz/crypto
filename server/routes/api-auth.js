@@ -66,7 +66,7 @@ router.post('/signup', function(req, res) {
                     </div>
                     <div style="padding: 20px;">
                     <p>&nbsp;</p>
-                    <p>NAME,</p>
+                    <p>${newUser.firstName},</p>
                     <p>Thank you for creating your new account with&nbsp;<a href="https://marinacovestorage.com">Marina Cove Storage!</a>&nbsp; Before you start scheduling different services and taking advantage of the different features, there are a few things that you need to do!</p>
                     <p>&nbsp;</p>
                     <ol>
