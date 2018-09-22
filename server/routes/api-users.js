@@ -110,5 +110,15 @@ router.put('/:id', passport.authenticate('jwt', { session: false}), function(req
   })
 
 
+  router.put('/password/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+    if (token) {
+        usersController.updatePassword(req, res)
+    }else{
+        res.json({success: false})
+    }
+  })
+
+  router.put('/password/update/:id')
 
 module.exports = router;

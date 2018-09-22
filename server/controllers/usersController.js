@@ -1,5 +1,6 @@
 const db            = require('../models/Users')
 const vehiclesDb    = require('../models/Vehicles')
+var bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
     findAll: function (req, res) {
@@ -50,6 +51,27 @@ module.exports = {
             .findOneAndUpdate({_id: req.params.id}, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+
+    updatePassword: function (req, res) {
+            var userPassword = req.body.password;
+            bcrypt.genSalt(10, function (err, salt) {
+                if (err) {
+                    return next(err);
+                }
+                bcrypt.hash(userPassword, salt, null, function (err, hash) {
+
+                    if (err) {
+                        return next(err);
+                    }
+
+                    db
+                    .findOneAndUpdate({_id: req.params.id}, {password: hash})
+                    .then(dbModel => res.json({success: true}))
+                    .catch(err => res.status(422).json({success: false}));
+                });
+            });
+
     },
     remove: function (req, res) {
         db

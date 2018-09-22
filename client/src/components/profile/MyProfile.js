@@ -11,7 +11,10 @@ class UserProfile extends Component {
         super(props);
 		this.state={
             edit: false,
-            error: false
+            error: false,
+            passwordErrorMessage: '',
+            passwordError: false,
+            changePassword: false
         }
     }
 
@@ -21,35 +24,35 @@ class UserProfile extends Component {
         axios.get('/api/users/authenticate').then(function(response){
             currentComponent.setState({authUser: response.data.authenticatedUser, update: true})
         }).catch(function(err){
-          console.log(err)
+            console.log(err)
         })
     }
 
-        handleInputChange = (event) => {
-            const value = event.target.value;
-            const name = event.target.name;
-            this.setState((prevState, props) => ({
-                authUser: {
-                    ...prevState.authUser,
-                    [name]: value,
-                },
-            }));
-        }
+    handleInputChange = (event) => {
+        const value = event.target.value;
+        const name = event.target.name;
+        this.setState((prevState, props) => ({
+            authUser: {
+                ...prevState.authUser,
+                [name]: value,
+            },
+        }));
+    }
 
-        handleSubmit=()=>{
-            let  currentComponent = this
+    handleSubmit=()=>{
+        let  currentComponent = this
 
-            axios.put('/api/users/'+this.state.authUser.id, this.state.authUser).then(function(response){
+        axios.put('/api/users/'+this.state.authUser.id, this.state.authUser).then(function(response){
 
-                if(response.status === 200){
-                    currentComponent.setState({edit: false, error: false})
-                }else{
-                    currentComponent.setState({error: true})
-                }
-            }).catch(function(error){
+            if(response.status === 200){
+                currentComponent.setState({edit: false, error: false})
+            }else{
                 currentComponent.setState({error: true})
-            })
-        }
+            }
+        }).catch(function(error){
+            currentComponent.setState({error: true})
+        })
+    }
 
 
     profileEdit=()=>{
@@ -63,13 +66,74 @@ class UserProfile extends Component {
 
     errorMessage = () => {
         return(
-           <Message negative>
-           <Message.Header>Error Updating Profile</Message.Header>
-               <p>We were not able to update your profile.  Please try again.</p>
-               <p>If you are still having issues, please contact our team to let us know.</p>
-           </Message>
+            <Message negative>
+            <Message.Header>Error Updating Profile</Message.Header>
+                <p>We were not able to update your profile.  Please try again.</p>
+                <p>If you are still having issues, please contact our team to let us know.</p>
+            </Message>
         )
-   }
+    }
+
+    passwordErrorMessage = () => {
+        return(
+        <Message negative>
+        <Message.Header>Error Updating Password</Message.Header>
+            <p>{this.state.passwordErrorMessage}</p>
+        </Message>
+        )
+    }
+
+    validatePassword=(event)=>{
+
+        const value = event.target.value;
+        const name = event.target.name;
+        this.setState((prevState, props) => ({
+                ...prevState,
+                [name]: value,
+        }));
+    }
+
+    submitPasswordChange=()=>{
+        let currentComponent = this
+
+        if(this.state.password === this.state.confirmPassword){
+            axios.put('/api/users/password/'+this.state.authUser.id, {password: this.state.password}).then(function(response){
+                console.log(response)
+                if(response.data.success){
+                    currentComponent.setState({changePassword: false, passwordError: false, passwordErrorMessage: ''})
+                }else{
+                    currentComponent.setState({passwordError: true, passwordErrorMessage: 'Unable to update password.  Please contact our team if you continue to run into issues'})
+                }
+            })
+        }else{
+            this.setState({passwordError: true, passwordDisabled: true, passwordErrorMessage: 'Passwords do not match.  Please update and try again.'})
+        }
+    }
+
+    changePasswordBoolean=()=>{
+        this.setState({changePassword: true})
+    }
+
+    changePassword=()=>{
+        return(
+            <div>
+                {this.state.passwordError ? this.passwordErrorMessage() : null}
+                        <div>
+                            <Form>
+                                <Form.Field>
+                                <label>New Password</label>
+                                <input placeholder='**********' type='password' name='password' onChange={this.validatePassword}/>
+                                </Form.Field>
+                                <Form.Field>
+                                <label>Confirm Password</label>
+                                <input placeholder='**********' type='password' name='confirmPassword' onChange={this.validatePassword}/>
+                                </Form.Field>
+                            </Form>
+                        </div>
+                        <Button style={{marginTop: "25px"}} onClick={this.submitPasswordChange}>Change Password</Button>
+            </div>
+        )
+    }
 
     returnData=()=>{
         return(
@@ -80,7 +144,10 @@ class UserProfile extends Component {
                             <Header.Content>{this.state.authUser.firstName + ' ' + this.state.authUser.lastName}</Header.Content>
                             {this.state.authUser.captainsClub ? <Header.Content style={{color: "#EF1B36"}}>Captains Club Member</Header.Content> : null}
                             <Button onClick={this.profileEdit} style={{marginTop: "10px"}}>Edit Profile</Button>
+                            <Button onClick={this.changePasswordBoolean} style={{marginTop: "10px"}}>Change Password</Button>
                         </Header>
+
+                        {this.state.changePassword ? this.changePassword() : null}
 
                         <Grid columns={3} centered divided style={{marginTop: "60px"}}>
                             <Grid.Row> 
@@ -178,6 +245,7 @@ class UserProfile extends Component {
                                             <label>Zip Code</label>
                                             <input placeholder={this.state.authUser.zip} name='zip' onChange={this.handleInputChange}/>
                                             </Form.Field>
+
                                         </Form>
                                         </Header.Subheader>
                                         </Header.Content>
@@ -237,6 +305,7 @@ class UserProfile extends Component {
                 {this.state.update ?
 
                     this.state.edit ? this.returnForm() : this.returnData()
+                    
                     
                     :null
                 }
