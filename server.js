@@ -50,7 +50,7 @@ app.use('/api/vehicles', apiRoutesVehicles);
 app.use('/api/auth', apiRoutesAuth);
 
 
-router.get('*', (req, res) => {
+router.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
