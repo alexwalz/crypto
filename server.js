@@ -55,12 +55,13 @@ app.use('/api/auth', apiRoutesAuth);
 // });
 
     // serve static assets normally
-    app.use(express.static(__dirname + '/public'))
+    app.use(express.static(__dirname + '/client/public'))
 
+    console.log(__dirname)
     // handle every other route with index.html, which will contain
     // a script tag to your application's JavaScript file(s).
     app.get('*', function (request, response){
-      response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+      response.sendFile(path.resolve(__dirname, '/client/public', './index.html'))
     })
 
 
