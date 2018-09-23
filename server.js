@@ -11,7 +11,7 @@ const db_url        = process.env.MONGODB_URI || config.dbUri
 
 require('./server/models').connect(db_url);
 
-app.use(express.static(path.join(__dirname, 'client/public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 var port = process.env.PORT || 5000;
 
@@ -51,7 +51,7 @@ app.use('/api/auth', apiRoutesAuth);
 
 
 router.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/public/index.html'));
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 
