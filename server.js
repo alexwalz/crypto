@@ -50,13 +50,10 @@ app.use('/api/vehicles', apiRoutesVehicles);
 app.use('/api/auth', apiRoutesAuth);
 
 
-// router.get('/*', (req, res) => {
-//     res.sendFile(path.join(__dirname + '/client/build/index.html'));
-// });
+router.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
 
-app.get('*', function (request, response){
-    response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-})
 
 app.listen(port, function () {
     console.log(`server running on port ${port}`);
