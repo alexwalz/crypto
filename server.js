@@ -54,6 +54,33 @@ router.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
+router.get('/password-reset/:id', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
+router.get('/profile', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+router.get('/signup', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
+router.get('/confirm', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
+router.get('/forgot-password', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
+router.get('/expired-link', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
 
 app.listen(port, function () {
     console.log(`server running on port ${port}`);
