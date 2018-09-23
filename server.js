@@ -50,9 +50,25 @@ app.use('/api/vehicles', apiRoutesVehicles);
 app.use('/api/auth', apiRoutesAuth);
 
 
-router.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
-});
+// router.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname + '/client/build/index.html'));
+// });
+
+app.get("*", (req, res, next) => {
+
+    res.send(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>SSR with RR</title>
+        </head>
+  
+        <body>
+          <div id="app">${markup}</div>
+        </body>
+      </html>
+    `)
+  })
 
 
 app.listen(port, function () {
