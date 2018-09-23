@@ -11,7 +11,7 @@ const db_url        = process.env.MONGODB_URI || config.dbUri
 
 require('./server/models').connect(db_url);
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+// app.use(express.static(path.join(__dirname, 'client/build')));
 
 var port = process.env.PORT || 5000;
 
@@ -50,9 +50,18 @@ app.use('/api/vehicles', apiRoutesVehicles);
 app.use('/api/auth', apiRoutesAuth);
 
 
-router.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
-});
+// router.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname + '/client/build/index.html'));
+// });
+
+    // serve static assets normally
+    app.use(express.static(__dirname + '/public'))
+
+    // handle every other route with index.html, which will contain
+    // a script tag to your application's JavaScript file(s).
+    app.get('*', function (request, response){
+      response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+    })
 
 
 app.listen(port, function () {
