@@ -1,3 +1,3 @@
 module.exports = {
-    'secret':'mernsecure'
+    'secret':process.env.passport_secret || 'mernsecure'
   };
