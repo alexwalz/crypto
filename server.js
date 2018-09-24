@@ -55,6 +55,8 @@ router.get('/*', (req, res) => {
 });
 
 
+app.use(router)
+
 app.listen(port, function () {
     console.log(`server running on port ${port}`);
 });
