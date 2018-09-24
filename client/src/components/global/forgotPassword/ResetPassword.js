@@ -12,15 +12,22 @@ class ResetPassword extends Component {
             confirmPassword: '',
             error: false,
             success: false,
-            matchError: false
+            matchError: false,
+            update: false,
+            name: "Name"
       }
     }
 
     componentDidMount=()=>{
+      let currentComponent = this
+
         this.setState({passwordHash: this.props.match.params.id}, function(){
           axios.get('/api/users/verify-hash/'+this.state.passwordHash).then(function(response){
+            console.log(response)
             if(!response.data.success){
               window.location = '/expired-link'
+            }else{
+              currentComponent.setState({update: true, name: response.data.name})
             }
           })
         })
@@ -104,7 +111,7 @@ class ResetPassword extends Component {
           
             <div  style={{position: "fixed", top: "25%", left: "15%"}}>
              
-              <h1 style={{color: 'white', fontSize: "5rem"}}>Hey! Time to Reset your Password!</h1>
+              <h1 style={{color: 'white', fontSize: "5rem"}}>Hey, {this.state.name}! Time to Reset your Password!</h1>
               <p style={{fontSize: '1.5rem', color: '#1E1E1E', width: "70%"}}>Go ahead and enter in your new password below.  Try not to forget it this time.</p>
              
               {this.state.error ? this.errorMessage() : null}

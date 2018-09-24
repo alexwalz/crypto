@@ -174,7 +174,7 @@ module.exports = {
 
                 db
                 .findOneAndUpdate({resetPasswordHash: passwordHash}, {password: hash, resetPasswordHash: ''})
-                .then(dbModel => res.json({success: true}))
+                .then(dbModel => res.json({success: true, name: dbModel.firstName}))
                 .catch(err => res.status(422).json({success: false}));
             });
         });
