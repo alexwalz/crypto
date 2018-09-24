@@ -14,8 +14,13 @@ class ResetPassword extends Component {
             success: false,
             matchError: false,
             update: false,
-            name: "Name"
+            name: ""
       }
+    }
+
+    capitalize = (s) => {
+      if (typeof s !== 'string') return ''
+      return s.charAt(0).toUpperCase() + s.slice(1)
     }
 
     componentDidMount=()=>{
@@ -27,7 +32,9 @@ class ResetPassword extends Component {
             if(!response.data.success){
               window.location = '/expired-link'
             }else{
-              currentComponent.setState({update: true, name: response.data.name})
+              let name = response.data.name.toLowerCase()
+                  name = response.data.name.charAt(0).toUpperCase() + response.data.name.slice(1)
+              currentComponent.setState({update: true, name: name})
             }
           })
         })
@@ -111,7 +118,7 @@ class ResetPassword extends Component {
           
             <div  style={{position: "fixed", top: "25%", left: "15%"}}>
              
-              <h1 style={{color: 'white', fontSize: "5rem"}}>Hey, {this.state.name}! Time to Reset your Password!</h1>
+              <h1 style={{color: 'white', fontSize: "5rem"}}>Hey, <span style={{color: "#1E1E1E"}}>{this.state.name}</span>! Time to Reset your Password!</h1>
               <p style={{fontSize: '1.5rem', color: '#1E1E1E', width: "70%"}}>Go ahead and enter in your new password below.  Try not to forget it this time.</p>
              
               {this.state.error ? this.errorMessage() : null}
