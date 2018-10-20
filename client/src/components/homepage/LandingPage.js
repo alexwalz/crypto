@@ -15,8 +15,8 @@ class HomePage extends Component {
     return (
       <div className="landing-page">
             <div className='landing-page-text'>
-            <h1 className='landing-page-title'>Marina Cove Storage</h1>
-            <p className='landing-page-subtitle'>Site is currently under construction.  Please come back October 21,2018 for additional information.</p>
+            <h1 className='landing-page-title'>New Website</h1>
+            <p className='landing-page-subtitle'>Site is currently under construction.  Please come back later for additional information.</p>
             </div>
             <div className='contact-button-container'><Button>Contact Us</Button></div>
       </div>

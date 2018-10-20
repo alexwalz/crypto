@@ -13,7 +13,5 @@ module.exports.connect = (uri) => {
 
     // load models
     require('./Users');
-    require('./Services');
-    require('./Vehicles');
 
 };

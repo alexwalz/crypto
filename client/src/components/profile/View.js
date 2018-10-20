@@ -2,13 +2,6 @@ import React, { Component} from 'react'
 import Sidebar from './Sidebar'
 import './styles.css'
 import axios from 'axios'
-import Vehicles from '../vehicles/View'
-import AdminView from '../adminPortal/View'
-import MyProfile from './MyProfile'
-import CustomerProfiles from './CustomerProfile'
-// eslint-disable-next-line 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NotFound from '../global/NotFound'
 
 
 class Profile extends Component {
@@ -39,13 +32,7 @@ class Profile extends Component {
                 <Sidebar/>
 
                 <div style={{marginLeft: "150px", padding: "5%"}}>
-                    <Switch location={this.props.location}>
-                        <Route path="/profile/vehicles" component={Vehicles} />
-                        <Route path="/profile/admin" component={AdminView} />
-                        <Route path="/profile/user/:id"  component={CustomerProfiles} />
-                        <Route path="/profile" user={this.state.authUser} component={MyProfile} />
-                        <Route component={NotFound} />
-                    </Switch>
+                    
                 </div>
 
 

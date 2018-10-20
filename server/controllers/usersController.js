@@ -1,5 +1,4 @@
 const db            = require('../models/Users')
-const vehiclesDb    = require('../models/Vehicles')
 var bcrypt          = require('bcrypt-nodejs');
 var nodemailer      = require('nodemailer')
 

@@ -19,10 +19,6 @@ app.use(bodyParser.json());
 var allowedOrigins = [
     'http://localhost:3000',
     'http://localhost:5000',
-    'https://marina-cove.herokuapp.com',
-    'http://marina-cove.herokuapp.com',
-    'http://marinacovestorage.com',
-    'https://marinacovestorage.com'
 ];
 
 
@@ -44,16 +40,12 @@ app.use(cors({
 // Routes
 const apiRoutes             = require('./server/routes/api-routes');
 const apiRoutesUsers        = require('./server/routes/api-users');
-const apiRoutesServices     = require('./server/routes/api-services');
-const apiRoutesVehicles     = require('./server/routes/api-vehicles');
 const apiRoutesAuth         = require('./server/routes/api-auth');
 
 
 
 app.use('/api', apiRoutes);
 app.use('/api/users', apiRoutesUsers);
-app.use('/api/services', apiRoutesServices);
-app.use('/api/vehicles', apiRoutesVehicles);
 app.use('/api/auth', apiRoutesAuth);
 
 
