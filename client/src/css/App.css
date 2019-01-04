@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Andika|Montserrat|Taviraj');
+
 .App {
   text-align: center;
+  font-family: 'Molengo', sans-serif;
 }
 
 .App-logo {
@@ -21,6 +24,15 @@
 .App-intro {
   font-size: large;
 }
+
+.title{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sub-title{
+  font-family: 'Taviraj', serif;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

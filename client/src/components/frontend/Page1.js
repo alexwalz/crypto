@@ -14,11 +14,15 @@ class HomePage extends Component {
   render() {
     return (
       <div className="landing-page">
-            <div className='landing-page-text'>
-            <h1 className='landing-page-title'>New Website</h1>
-            <p className='landing-page-subtitle'>Site is currently under construction.  Please come back later for additional information.</p>
-            </div>
-            <div className='contact-button-container'><Button>Contact Us</Button></div>
+          <div style={{paddingLeft: "5%"}}>
+            <h1 className='landing-page-title title'>CryptoMe</h1>
+            <h2 className='landing-page-subtitle sub-title'>A Directory for all your Crypto-Currency Needs</h2>
+            <Button.Group floated='left' style={{paddingLeft: "11.5%", paddingTop: "1%"}}>
+              <Button inverted color='teal'>Search</Button>
+              <Button.Or />
+              <Button inverted color='teal'>Info</Button>
+            </Button.Group>
+          </div>
       </div>
     );
   }
