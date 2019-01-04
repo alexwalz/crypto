@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react';
+import { Button, Image } from 'semantic-ui-react';
+
 
 const NameContainer =()=>{
     return(
@@ -10,7 +11,7 @@ const NameContainer =()=>{
             <div className='button-group'>
                 <Button.Group vertical>
                     <Button circular icon='search' color='teal'></Button>
-                    <Button circular icon='user' color='teal'></Button>
+                    <Button circular icon='key' color='teal'></Button>
                     <Button circular icon='info' color='teal'></Button>
                 </Button.Group>
             </div>

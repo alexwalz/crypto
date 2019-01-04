@@ -106,13 +106,13 @@ module.exports = {
         
                         let resetLink =`http://localhost:3000/password-reset/${hash}`
                         let mailOptions = {
-                            from: `"Marina Cove Storage" <marinacovestorageutah@gmail.com>`, // sender address
+                            from: `"CryptoMe" <marinacovestorageutah@gmail.com>`, // sender address
                             to: `${dbModel.email}`, // list of receivers
                             subject: 'Password Reset!', // Subject line
                             html: `<div>
                             <div style="height: 200px; background-color: #ef1b36; position: relative;">
                             <div style="margin: auto; text-align: center;">
-                            <h1 style="color: white; font-size: 2.5rem; padding-top: 70px;">Marina Cove Storage</h1>
+                            <h1 style="color: white; font-size: 2.5rem; padding-top: 70px;">CryptoMe</h1>
                             </div>
                             </div>
                             <div style="padding: 20px;">
@@ -123,13 +123,13 @@ module.exports = {
                             <br/>
                             <br/>
                             <p>Sincerely,</p>
-                            <p>Marina Cove Storage Team</p>
+                            <p>CryptoMe Team</p>
                             <p>&nbsp;</p>
                             <p>&nbsp;</p>
                             </div>
                             <div style="margin-top: 60px;">
                             <div style="height: 100px; background-color: #1e1e1e; color: white; padding: 20px;">
-                            <p>Marina Cove Storage</p>
+                            <p>CryptoMe</p>
                             <p>22 E 1500 S<br />American Fork, UT 84003<br />(801) 230-7452</p>
                             <p>&nbsp;</p>
                             <p>&nbsp;</p>

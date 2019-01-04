@@ -1,4 +1,4 @@
-# Marina Cove Web Application
+# CryptoMe Web Application
 
 This is an application starting point that is fully configured with the following:
 

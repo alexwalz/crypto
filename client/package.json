@@ -15,6 +15,7 @@
     "react-router-transition": "^1.2.0",
     "react-scripts": "1.1.0",
     "react-transition-group": "^2.2.1",
+    "react-vis": "^1.11.5",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.3.3",

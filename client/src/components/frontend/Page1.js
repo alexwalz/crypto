@@ -15,10 +15,8 @@ class HomePage extends Component {
   render() {
     return (
       <div className="landing-page">
-      <div id="overlay"></div>
           <NameContainer/>
           <Sidebar/>
-
       </div>
     );
   }
