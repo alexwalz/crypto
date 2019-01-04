@@ -25,6 +25,10 @@ getToken = function (headers) {
   };
 
 
+router.get('/confirm/:id', function (req, res) {
+    usersController.confirm(req, res)
+});
+
 
 
 router.get('/authenticate', passport.authenticate('jwt', { session: false}), function(req, res) {
@@ -44,7 +48,6 @@ router.get('/authenticate', passport.authenticate('jwt', { session: false}), fun
             state: req.user.state,
             zip: req.user.zip,
             role: req.user.role,
-            captainsClub: req.user.captainsClub,
             active: req.user.active
         }
 

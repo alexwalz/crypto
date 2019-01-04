@@ -104,7 +104,7 @@ module.exports = {
                             }
                         });
         
-                        let resetLink =`https://marina-cove.herokuapp.com/password-reset/${hash}`
+                        let resetLink =`http://localhost:3000/password-reset/${hash}`
                         let mailOptions = {
                             from: `"Marina Cove Storage" <marinacovestorageutah@gmail.com>`, // sender address
                             to: `${dbModel.email}`, // list of receivers

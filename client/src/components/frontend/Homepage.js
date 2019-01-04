@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import Navbar from '../global/navigation/View'
-import LandingPage from './LandingPage'
+import Navbar from '../global/navigation/Navbar'
+import Page1 from './Page1'
 
 
 class HomePage extends Component {
@@ -20,7 +20,7 @@ class HomePage extends Component {
 
   componentDidMount=()=>{
 
-    var currentComponent = this
+    let currentComponent = this
 
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken');
 
@@ -37,7 +37,7 @@ class HomePage extends Component {
     return (
       <div className="App">
         <Navbar/>
-        <LandingPage/>
+        <Page1/>
       </div>
     );
   }

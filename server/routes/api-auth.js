@@ -53,7 +53,7 @@ router.post('/signup', function(req, res) {
                     }
                 });
 
-                let resetLink =`https://marina-cove.herokuapp.com/confirm/${newUser.activeHash}`
+                let resetLink =`http://localhost:3000/confirm/${newUser.activeHash}`
                 let mailOptions = {
                     from: `"New User Account Created!" <marinacovestorageutah@gmail.com>`, // sender address
                     to: `${newUser.email}`, // list of receivers
