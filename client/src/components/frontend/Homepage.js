@@ -36,7 +36,6 @@ class HomePage extends Component {
   render() {
     return (
       <div className="App">
-        <LoginButton/>
         <Page1/>
       </div>
     );
