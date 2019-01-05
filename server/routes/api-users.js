@@ -59,6 +59,8 @@ router.get('/authenticate', passport.authenticate('jwt', { session: false}), fun
 
     }
 
+    
+
   });
 
 
